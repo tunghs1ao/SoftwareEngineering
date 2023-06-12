@@ -7,6 +7,8 @@
 #include<QByteArray>
 #include<QCryptographicHash>
 #include<QMouseEvent>
+#include<QDebug>
+#include"modifypwdialog.h"
 
 namespace Ui {
 class QDlgLogin;
@@ -17,8 +19,10 @@ class QDlgLogin : public QDialog
     Q_OBJECT
 
 private:
-    QString myAccount="123";
-    QString myPassword="abc";
+    QString myAccount;
+    QString myPassword;
+    QString myAccount1;
+    QString myPassword1;
     int tryCount=0;//试错次数
     bool moving=false;//表示窗口是否在鼠标操作下移动
     QPoint lastPos;//上一次的鼠标位置
@@ -38,6 +42,8 @@ public:
 
 private slots:
     void on_btnLogin_clicked();//Login
+
+    void on_btnChange_clicked();//修改密码
 
 private:
     Ui::QDlgLogin *ui;

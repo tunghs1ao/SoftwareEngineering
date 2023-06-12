@@ -4,8 +4,12 @@
 #
 #-------------------------------------------------
 
+INCLUDEPATH += /home/tunghsiao/libxlsxwriter/include
+LIBS += -L/home/tunghsiao/libxlsxwriter/lib -lxlsxwriter
+
 QT       += core gui
-QT+=sql
+QT      +=sql
+QT      +=xlsx
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,15 +31,48 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    qdlglogin.cpp
+    qdlglogin.cpp \
+    playerwindow.cpp \
+    playerdialog.cpp \
+    eventswindow.cpp \
+    eventsdialog.cpp \
+    judgeswindow.cpp \
+    judgesdialog.cpp \
+    arrangewindow.cpp \
+    arrangedialog.cpp \
+    resultwindow.cpp \
+    resultdialog.cpp \
+    modifypwdialog.cpp
 
 HEADERS += \
         mainwindow.h \
-    qdlglogin.h
+    qdlglogin.h \
+    playerwindow.h \
+    playerdialog.h \
+    eventswindow.h \
+    eventsdialog.h \
+    judgeswindow.h \
+    judgesdialog.h \
+    arrangewindow.h \
+    arrangedialog.h \
+    resultwindow.h \
+    resultdialog.h \
+    modifypwdialog.h
 
 FORMS += \
         mainwindow.ui \
-    qdlglogin.ui
+    qdlglogin.ui \
+    playerwindow.ui \
+    playerdialog.ui \
+    eventswindow.ui \
+    eventsdialog.ui \
+    judgeswindow.ui \
+    judgesdialog.ui \
+    arrangewindow.ui \
+    arrangedialog.ui \
+    resultwindow.ui \
+    resultdialog.ui \
+    modifypwdialog.ui
 
 RESOURCES += \
     images.qrc

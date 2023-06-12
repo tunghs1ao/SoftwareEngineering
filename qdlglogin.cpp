@@ -26,9 +26,14 @@ void QDlgLogin::readSetting(){//从注册表读取设置
     QSettings settings(organization,appName);
 
     bool saved=settings.value("saved",false).toBool();//读取saved键的值
-    myAccount=settings.value("Account","123").toString();//Account缺省为“123”
-    QString defaultPassword=encrypt("abc");//缺省密码"abc"加密
-    myPassword=settings.value("Password",defaultPassword).toString();//Password缺省为"abc"加密密码
+    //1
+    myAccount=settings.value("UserAccount","user").toString();//Account缺省
+    QString defaultPassword=encrypt("123");//缺省密码加密
+    myPassword=settings.value("UserPassword",defaultPassword).toString();//Password缺省
+    //2
+    myAccount1=settings.value("UserAccount1","user1").toString();//Account缺省
+    defaultPassword=encrypt("1234");//缺省密码加密
+    myPassword1=settings.value("UserPassword1",defaultPassword).toString();//Password缺省
 
     if(saved)
         ui->editAccount->setText(myAccount);
@@ -40,6 +45,8 @@ void QDlgLogin::writeSetting(){//从注册表写入设置
     QSettings settings("WWB-Qt","qt-project-SpoCompeManaSys");//注册表键组
     settings.setValue("Account",myAccount);
     settings.setValue("Password",myPassword);
+    settings.setValue("Account1",myAccount1);
+    settings.setValue("Password1",myPassword1);
     settings.setValue("saved",ui->chkBoxSave->isChecked());
 }
 
@@ -61,6 +68,12 @@ void QDlgLogin::on_btnLogin_clicked()//Login
     QString encryptPassword=encrypt(password);//对输入密码进行加密
 
     if((account==myAccount)&&(encryptPassword==myPassword)){
+        myAccount = account; // 选择第一组帐号
+        writeSetting();//保存设置
+        this->accept();
+    }
+    else if((account==myAccount1)&&(encryptPassword==myPassword1)){
+        myAccount1 = account; // 选择第二组帐号
         writeSetting();//保存设置
         this->accept();
     }
@@ -96,4 +109,15 @@ void QDlgLogin::mouseMoveEvent(QMouseEvent *event){//Move
 void QDlgLogin::mouseReleaseEvent(QMouseEvent *event){//Release
     Q_UNUSED(event);
     moving=false;
+}
+
+void QDlgLogin::on_btnChange_clicked()//修改密码
+{
+    ModifyPWDialog *modifyPWDlg=new ModifyPWDialog(this);
+    Qt::WindowFlags flags=modifyPWDlg->windowFlags();
+    modifyPWDlg->setWindowFlags(flags | Qt::MSWindowsFixedSizeDialogHint); //设置对话框固定大小
+
+    int ret=modifyPWDlg->exec();// 以模态方式显示对话框
+    if (ret==QDialog::Accepted)//OK键被按下
+        delete modifyPWDlg;
 }

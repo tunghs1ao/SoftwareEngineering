@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>731</width>
-    <height>545</height>
+    <width>543</width>
+    <height>394</height>
    </rect>
   </property>
   <property name="font">
@@ -18,10 +18,84 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QTableView" name="tableView"/>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTabWidget::pane {
+    border: 1px solid #C2C7CB;
+    background-color: #F0F0F0;
+}
+
+QTabWidget::tab-bar {
+    alignment: center;
+}
+
+QTabBar::tab {
+    background-color: #FFFFFF;
+    color: #808080;
+    min-width: 80px;
+    padding: 5px;
+    border: 1px solid #C2C7CB;
+	font-weight: bold; /* 加粗 */
+}
+
+QTabBar::tab:selected {
+    background-color: #EFEFEF; /* 或者使用 #F2F2F2 */
+    color: #333333;
+    border-bottom-color: #A2AEBE;
+}
+
+QTabBar::tab:hover {
+    background-color: #0078D7;
+    color: #FFFFFF;
+    border-bottom-color: #A2AEBE;
+}
+
+QTabWidget::tab-bar:top {
+    top: 1px;
+}
+
+QTabWidget::tab-bar:bottom {
+    bottom: 1px;
+}
+
+QTabWidget::tab-bar:left {
+    left: 1px;
+}
+
+QTabWidget::tab-bar:right {
+    right: 1px;
+}
+
+QTabWidget::tab-bar:top:selected {
+    border-bottom-color: #A2AEBE;
+}
+
+QTabWidget::tab-bar:bottom:selected {
+    border-top-color: #A2AEBE;
+}
+
+QTabWidget::tab-bar:left:selected {
+    border-right-color: #A2AEBE;
+}
+
+QTabWidget::tab-bar:right:selected {
+    border-left-color: #A2AEBE;
+}
+t</string>
+      </property>
+      <property name="currentIndex">
+       <number>-1</number>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -30,14 +104,47 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>731</width>
-     <height>22</height>
+     <width>543</width>
+     <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>系统管理</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actQuit"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>报名管理</string>
+    </property>
+    <addaction name="actApply"/>
+    <addaction name="actWithdraw"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>赛事管理</string>
+    </property>
+    <addaction name="actPlayerManage"/>
+    <addaction name="actEventsManage"/>
+    <addaction name="actJudgesManage"/>
+    <addaction name="actArrangeManage"/>
+    <addaction name="actResultManage"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <property name="toolButtonStyle">
-    <enum>Qt::ToolButtonTextUnderIcon</enum>
+    <enum>Qt::ToolButtonTextBesideIcon</enum>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -45,7 +152,14 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actConnect"/>
+   <addaction name="actApply"/>
+   <addaction name="actWithdraw"/>
+   <addaction name="separator"/>
+   <addaction name="actPlayerManage"/>
+   <addaction name="actEventsManage"/>
+   <addaction name="actJudgesManage"/>
+   <addaction name="actArrangeManage"/>
+   <addaction name="actResultManage"/>
    <addaction name="separator"/>
    <addaction name="actQuit"/>
   </widget>
@@ -66,6 +180,9 @@
    <property name="checkable">
     <bool>false</bool>
    </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/icons/images/132.bmp</normaloff>:/icons/images/132.bmp</iconset>
@@ -75,6 +192,96 @@
    </property>
    <property name="toolTip">
     <string>退出管理系统</string>
+   </property>
+  </action>
+  <action name="actApply">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/images/204.bmp</normaloff>:/icons/images/204.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>报名</string>
+   </property>
+   <property name="toolTip">
+    <string>报名</string>
+   </property>
+  </action>
+  <action name="actWithdraw">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/images/208.bmp</normaloff>:/icons/images/208.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>退赛</string>
+   </property>
+   <property name="toolTip">
+    <string>退赛</string>
+   </property>
+  </action>
+  <action name="actPlayerManage">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/images/00.JPG</normaloff>:/icons/images/00.JPG</iconset>
+   </property>
+   <property name="text">
+    <string>选手</string>
+   </property>
+  </action>
+  <action name="actEventsManage">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/images/124.bmp</normaloff>:/icons/images/124.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>项目</string>
+   </property>
+  </action>
+  <action name="actJudgesManage">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/images/00.JPG</normaloff>:/icons/images/00.JPG</iconset>
+   </property>
+   <property name="text">
+    <string>裁判</string>
+   </property>
+  </action>
+  <action name="actArrangeManage">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/images/230.bmp</normaloff>:/icons/images/230.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>赛程</string>
+   </property>
+  </action>
+  <action name="actResultManage">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/images/306.bmp</normaloff>:/icons/images/306.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>成绩</string>
    </property>
   </action>
  </widget>
